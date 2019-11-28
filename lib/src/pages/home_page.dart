@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intimate/src/pages/announcement_page.dart';
+import 'package:intimate/src/pages/events_page.dart';
+import 'package:intimate/src/pages/ranking_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -9,10 +12,10 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text('Eventos', style: optionStyle),
-    Text('Ranking', style: optionStyle),
-    Text('Anuncios', style: optionStyle),
+  final List<Widget> _widgetOptions = <Widget>[
+    EventsPage(),
+    RankingPage(),
+    AnnouncementPage(),
   ];
 
   @override
