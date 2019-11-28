@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intimate/src/utils/utils.dart';
 import 'package:intimate/src/widgets/logo_widget.dart';
 
 class LoginPage extends StatefulWidget {
@@ -7,10 +8,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String _name = '';
-  String _nickname = '';
   String _email = '';
-  String _numberPhone = '';
   String _password = '';
 
   @override
@@ -25,14 +23,14 @@ class _LoginPageState extends State<LoginPage> {
           Container(
             padding: EdgeInsets.all(10.0),
             child: Center(
-              child: Text('Registro'),
+              child: Text('Iniciar Sesion'),
             ),
           ),
           _createEmail(),
           Divider(),
           _createPassword(),
           _createButtonLogin(),
-          _createSignupButton(),
+          _createSignupButton(context),
         ],
       ),
     );
@@ -85,16 +83,18 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _createSignupButton() {
+  Widget _createSignupButton(BuildContext context) {
     return Container(
       child: FlatButton(
         child: Text('Registrar'),
-        onPressed: () => goSignup(),
+        onPressed: () => goSignup(context),
       ),
     );
   }
 
   _iniciarSession() {}
 
-  goSignup() {}
+  goSignup(BuildContext context) {
+    Utils.navigateWithName(context, 'sigup');
+  }
 }
