@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intimate/src/utils/utils.dart';
 import 'package:intimate/src/widgets/logo_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -18,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
         title: Text('Intimos'),
       ),
       body: ListView(
+        padding: EdgeInsets.all(10.0),
         children: <Widget>[
           LogoWidget(),
           Container(
