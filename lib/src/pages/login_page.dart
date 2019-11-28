@@ -92,7 +92,9 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _iniciarSession() {}
+  _iniciarSession() {
+    Utils.navigateWithName(context, 'home');
+  }
 
   goSignup(BuildContext context) {
     Utils.navigateWithName(context, 'sigup');
