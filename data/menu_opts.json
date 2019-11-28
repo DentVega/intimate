@@ -1,0 +1,40 @@
+{
+  "nombreApp": "intimates",
+  "rutas": [
+    {
+      "ruta": "login",
+      "icon": "add_alert",
+      "texto": "Login"
+    },
+    {
+      "ruta": "sigup",
+      "icon": "accessibility",
+      "texto": "Sigup"
+    },
+    {
+      "ruta": "home",
+      "icon": "folder_open",
+      "texto": "Home"
+    },
+    {
+      "ruta": "animatedContainer",
+      "icon": "donut_large",
+      "texto": "Animated Container"
+    },
+    {
+      "ruta": "inputs",
+      "icon": "input",
+      "texto": "Inputs"
+    },
+    {
+      "ruta": "slider",
+      "icon": "tune",
+      "texto": "Slider - Checks"
+    },
+    {
+      "ruta": "list",
+      "icon": "list",
+      "texto": "Listas y Scroll"
+    }
+  ]
+}
