@@ -112,5 +112,7 @@ class _SigUpPageState extends State<SigUpPage> {
     );
   }
 
-  void signUp() {}
+  void signUp() {
+
+  }
 }
