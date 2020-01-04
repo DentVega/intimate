@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intimate/src/model/profile_model.dart';
+import 'package:intimate/src/providers/profile.provider.dart';
 import 'package:intimate/src/widgets/logo_widget.dart';
+import 'package:provider/provider.dart';
 
 class SigUpPage extends StatefulWidget {
   @override
@@ -15,23 +18,27 @@ class _SigUpPageState extends State<SigUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    final profileProvider = Provider.of<ProfileProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Registro'),
       ),
-      body: ListView(
-        children: <Widget>[
-          LogoWidget(),
-          _createEmail(),
-          Divider(),
-          _createPassword(),
-          Divider(),
-          _createName(),
-          Divider(),
-          _createNickName(),
-          Divider(),
-          _createButtonSignup(),
-        ],
+      body: Container(
+        padding: EdgeInsets.all(10.0),
+        child: ListView(
+          children: <Widget>[
+            LogoWidget(),
+            _createEmail(),
+            Divider(),
+            _createPassword(),
+            Divider(),
+            _createName(),
+            Divider(),
+            _createNickName(),
+            Divider(),
+            _createButtonSignup(profileProvider),
+          ],
+        ),
       ),
     );
   }
@@ -97,7 +104,7 @@ class _SigUpPageState extends State<SigUpPage> {
     );
   }
 
-  Widget _createButtonSignup() {
+  Widget _createButtonSignup(ProfileProvider profileProvider) {
     return Container(
       padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
       child: Center(
@@ -106,13 +113,18 @@ class _SigUpPageState extends State<SigUpPage> {
           color: Colors.blue,
           textColor: Colors.white,
           shape: StadiumBorder(),
-          onPressed: () => signUp(),
+          onPressed: () {
+            profileProvider.uploadProfile(Profile(
+                uid: '',
+                email: 'dentvega6@gmail.com',
+                name: 'Brian 3',
+                nickName: 'Brian V3',
+                score: 0
+            ));
+          },
         ),
       ),
     );
   }
 
-  void signUp() {
-
-  }
 }

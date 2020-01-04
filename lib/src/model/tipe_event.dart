@@ -1,0 +1,1 @@
+enum TypeEvent { kermes, predica, visita, party }

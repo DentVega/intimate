@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
         title: Text('Home'),
       ),
       drawer: Drawer(
-        child: _createDrawer(),
+        child: _createDrawer(context),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -46,25 +46,38 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _createDrawer() {
+  Widget _createDrawer(BuildContext context) {
     return ListView(
       padding: EdgeInsets.zero,
       children: <Widget>[
         DrawerHeader(
-          child: Text('DraweHeader'),
+          child: Container(),
           decoration: BoxDecoration(
             color: Colors.blue,
+              image: DecorationImage(
+                  image: AssetImage('assets/menu-img.jpg'),
+                  fit: BoxFit.cover)
           ),
         ),
         ListTile(
+          leading: Icon(Icons.people, color: Colors.blue,),
           title: Text('Perfil'),
           onTap: () {},
         ),
         ListTile(
+          leading: Icon(Icons.pages, color: Colors.blue,),
           title: Text('Anuncios'),
           onTap: () {},
         ),
         ListTile(
+          leading: Icon(Icons.map, color: Colors.blue,),
+          title: Text('Ubicaciones'),
+          onTap: () {
+            Navigator.pushNamed(context, 'maps');
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.exit_to_app, color: Colors.blue,),
           title: Text('Cerrar Sesion'),
           onTap: () => signOff(),
         )
