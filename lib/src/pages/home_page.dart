@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Inicio'),
       ),
       drawer: Drawer(
         child: _createDrawer(context),
@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.announcement), title: Text('Anuncios'))
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.blue,
         onTap: _onItemTapeed,
       ),
     );

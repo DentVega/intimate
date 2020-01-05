@@ -15,6 +15,15 @@ class _SigUpPageState extends State<SigUpPage> {
   String _email = '';
   String _numberPhone = '';
   String _password = '';
+  String _errorMessage = '';
+  bool _isLoading;
+
+  @override
+  void initState() {
+    _isLoading = false;
+    _errorMessage = '';
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,24 +32,35 @@ class _SigUpPageState extends State<SigUpPage> {
       appBar: AppBar(
         title: Text('Registro'),
       ),
-      body: Container(
-        padding: EdgeInsets.all(10.0),
-        child: ListView(
-          children: <Widget>[
-            LogoWidget(),
-            _createEmail(),
-            Divider(),
-            _createPassword(),
-            Divider(),
-            _createName(),
-            Divider(),
-            _createNickName(),
-            Divider(),
-            _createButtonSignup(profileProvider),
-          ],
-        ),
+      body: Stack(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.all(10.0),
+            child: ListView(
+              children: <Widget>[
+                LogoWidget(),
+                _createEmail(),
+                Divider(),
+                _createPassword(),
+                Divider(),
+                _createName(),
+                Divider(),
+                _createNickName(),
+                Divider(),
+                _createButtonSignup(profileProvider),
+              ],
+            ),
+          ),
+          _showCircularProgress(),
+        ],
       ),
     );
+  }
+
+  Widget _showCircularProgress() {
+    if (_isLoading) {
+      return Center(child: CircularProgressIndicator(),);
+    } return Container(height: 0.0, width: 0.0);
   }
 
   Widget _createEmail() {
