@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intimate/src/pages/event_detail.dart';
 import 'package:intimate/src/pages/home_page.dart';
 import 'package:intimate/src/pages/login_page.dart';
 import 'package:intimate/src/pages/map_location.dart';
@@ -10,6 +11,7 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     'login': (BuildContext context) => LoginPage(),
     'sigup': (BuildContext context) => SigUpPage(),
     'home': (BuildContext context) => HomePage(),
-    'maps': (BuildContext context) => MapLocation()
+    'maps': (BuildContext context) => MapLocation(),
+    'eventDetail': (BuildContext context) => EventDetail()
   };
 }

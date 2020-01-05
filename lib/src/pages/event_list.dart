@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intimate/src/model/event_model.dart';
+import 'package:intimate/src/utils/date_format_util.dart';
 import 'package:provider/provider.dart';
 
 class EventList extends StatelessWidget {
@@ -10,20 +11,20 @@ class EventList extends StatelessWidget {
     return Container(
       child: SizedBox(
         height: _screenSize.height,
-        child: _crearList(events),
+        child: _crearList(events, context),
       ),
     );
   }
 
-  Widget _crearList(List<Event> events) {
+  Widget _crearList(List<Event> events, BuildContext context) {
     if (events != null) {
       return ListView(
         children: events.map((event) {
           return Column(
             children: <Widget>[
               event.typeEvent == 'Kermes'
-                  ? _cardKermes(event)
-                  : _cardEvent(event),
+                  ? _cardKermes(event, context)
+                  : _cardEvent(event, context),
               SizedBox(
                 height: 15.0,
               ),
@@ -38,61 +39,83 @@ class EventList extends StatelessWidget {
     }
   }
 
-  Widget _cardEvent(Event event) {
+  Widget _cardEvent(Event event, BuildContext context) {
     return Card(
       elevation: 5.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      child: Column(
+      child: Row(
         children: <Widget>[
-          ListTile(
-            leading: Icon(Icons.event, color: Colors.blue,),
-            title: Text(event.name),
-            subtitle: Text(event.detail),
-            onTap: () {},
+          SizedBox(width: 10.0),
+          Icon(
+            Icons.event,
+            color: Colors.blue,
+            size: 30.0,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              FlatButton(
-                child: Text('Ver detalle'),
-                onPressed: () {},
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    event.name,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Text('Fecha:'),
+                      SizedBox(width: 5.0,),
+                      Text(
+                        DateFormatUtil.formatDateYYYYMMDD(event.date.toDate()),
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      FlatButton(
+                        child: Text(
+                          'Ver detalle',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.blue),
+                        ),
+                        onPressed: () {},
+                      ),
+                    ],
+                  )
+                ],
               ),
-            ],
+            ),
           )
         ],
       ),
     );
   }
 
-  Widget _cardKermes(Event event) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      elevation: 10.0,
-      child: Column(
-        children: <Widget>[
-          FadeInImage(
-            image: NetworkImage(
-                event.banner),
-            placeholder: AssetImage('assets/img/loading.gif'),
-            fadeInDuration: Duration(milliseconds: 200),
-            height: 300.0,
-            fit: BoxFit.cover,
-          ),
-          Container(padding: EdgeInsets.all(20.0), child: Column(
-            children: <Widget>[
-              Text(event.name),
-            ],
-          )),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              FlatButton(
-                child: Text('Ver detalle'),
-                onPressed: () {},
-              ),
-            ],
-          )
-        ],
+  Widget _cardKermes(Event event, BuildContext context) {
+    return GestureDetector(
+      onTap: () =>
+          Navigator.pushNamed(context, 'eventDetail', arguments: event),
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        elevation: 10.0,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        child: Stack(
+          children: <Widget>[
+            FadeInImage(
+              image: NetworkImage(event.banner),
+              placeholder: AssetImage('assets/img/loading.gif'),
+              fadeInDuration: Duration(milliseconds: 200),
+              height: 300.0,
+              fit: BoxFit.cover,
+            ),
+          ],
+        ),
       ),
     );
   }

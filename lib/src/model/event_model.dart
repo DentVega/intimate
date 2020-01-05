@@ -1,16 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intimate/src/model/tipe_event.dart';
 
 class Event {
   String uid;
   String name;
   String banner;
   String detail;
+  GeoPoint location;
   String typeEvent;
   Timestamp date;
   bool deleteFlag;
 
-  Event({this.uid, this.name, this.banner, this.detail, this.typeEvent, this.date, this.deleteFlag});
+  Event({this.uid, this.name, this.banner, this.detail, this.location, this.typeEvent, this.date, this.deleteFlag});
 
   factory Event.fromMap(Map data) {
     data = data ?? {};
@@ -19,6 +19,7 @@ class Event {
       name: data['name'],
       banner: data['banner'],
       detail: data['detail'],
+      location: data['location'],
       typeEvent: data['typeEvent'],
       date: data['date'],
       deleteFlag: data['deleteFlag'],
@@ -32,6 +33,7 @@ class Event {
       name: data['name'],
       banner: data['banner'],
       detail: data['detail'],
+      location: data['location'],
       typeEvent: data['typeEvent'],
       date: data['date'],
       deleteFlag: data['deleteFlag'],
