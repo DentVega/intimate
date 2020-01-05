@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intimate/src/model/event_model.dart';
 import 'package:intimate/src/utils/date_format_util.dart';
+import 'package:intimate/src/widgets/dialog_generator.dart';
+import 'package:intimate/src/widgets/widget_util.dart';
 import 'package:provider/provider.dart';
 
 class EventList extends StatelessWidget {
@@ -64,16 +66,7 @@ class EventList extends StatelessWidget {
                   SizedBox(
                     height: 10.0,
                   ),
-                  Row(
-                    children: <Widget>[
-                      Text('Fecha:'),
-                      SizedBox(width: 5.0,),
-                      Text(
-                        DateFormatUtil.formatDateYYYYMMDD(event.date.toDate()),
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
+                  WidgetUtil.rowDate(context, event),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
@@ -83,7 +76,9 @@ class EventList extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.bold, color: Colors.blue),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          DialogGenerator.showDialogVisitEvent(context, event);
+                        },
                       ),
                     ],
                   )

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intimate/src/model/event_model.dart';
 import 'package:intimate/src/utils/date_format_util.dart';
-import 'package:flutter_map/flutter_map.dart';
+import 'package:intimate/src/widgets/widget_util.dart';
 import 'package:latlong/latlong.dart';
 
 class EventDetail extends StatelessWidget {
@@ -17,7 +17,7 @@ class EventDetail extends StatelessWidget {
             SizedBox(
               height: 10.0,
             ),
-            _createDetailEvent(event),
+            _createDetailEvent(event, context),
           ]))
         ],
       ),
@@ -47,7 +47,7 @@ class EventDetail extends StatelessWidget {
     );
   }
 
-  Widget _createDetailEvent(Event event) {
+  Widget _createDetailEvent(Event event, BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.0),
       child: Column(
@@ -60,7 +60,7 @@ class EventDetail extends StatelessWidget {
           SizedBox(
             height: 20.0,
           ),
-          _locationEvent(event),
+          _locationEvent(event, context),
           SizedBox(height: 20.0),
           Text(
             'Te Esperamos',
@@ -96,19 +96,13 @@ class EventDetail extends StatelessWidget {
     );
   }
 
-  Widget _locationEvent(Event event) {
+  Widget _locationEvent(Event event, BuildContext context) {
     if (event.location == null) {
       return Container();
     } else {
       var latitude = event.location.latitude;
       var longitude = event.location.longitude;
-      return Container(
-        height: 300.0,
-        child: FlutterMap(
-          options: new MapOptions(center: LatLng(latitude, longitude)),
-          layers: [_createMap(), _createMarket(LatLng(latitude, longitude))],
-        ),
-      );
+      return WidgetUtil.location(context, LatLng(latitude, longitude), 300);
     }
   }
 
