@@ -106,31 +106,4 @@ class EventDetail extends StatelessWidget {
     }
   }
 
-  _createMap() {
-    return TileLayerOptions(
-        urlTemplate: 'https://api.mapbox.com/v4/'
-            '{id}/{z}/{x}/{y}@2x.png?access_token={accessToken}',
-        additionalOptions: {
-          'accessToken':
-              '',
-          'id': 'mapbox.streets'
-          // streets, dark, light, outdoors, satellite
-        });
-  }
-
-  _createMarket(LatLng positionEvent) {
-    return MarkerLayerOptions(markers: <Marker>[
-      Marker(
-          width: 100.0,
-          height: 100.0,
-          point: positionEvent,
-          builder: (context) => Container(
-                child: Icon(
-                  Icons.location_on,
-                  size: 45.0,
-                  color: Theme.of(context).primaryColor,
-                ),
-              ))
-    ]);
-  }
 }
