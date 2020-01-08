@@ -75,23 +75,12 @@ class WidgetUtil {
 
   static Widget rowAddress(BuildContext context, Event event) {
     return Container(
-      width: 300.0,
-      child: Row(
+      width: 350.0,
+      child: Column(
         children: <Widget>[
-          SizedBox(
-            height: 10.0,
-          ),
-          Text('Direccion:'),
-          SizedBox(
-            width: 5.0,
-          ),
-          Container(
-            width: 200.0,
-            child: Text(event.address,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 5,
-                style: TextStyle(fontWeight: FontWeight.bold)),
-          )
+          Text('Dirección:', style: TextStyle(fontWeight: FontWeight.bold),),
+          SizedBox(height: 10.0,),
+          Text(event.address, style: TextStyle(color: Colors.black, fontSize: 18),),
         ],
       ),
     );
