@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intimate/src/model/profile_model.dart';
 import 'package:intimate/src/providers/profile.provider.dart';
+import 'package:intimate/src/utils/utils.dart';
 import 'package:intimate/src/widgets/logo_widget.dart';
+import 'package:intimate/src/widgets/widget_util.dart';
 import 'package:provider/provider.dart';
 
 class SigUpPage extends StatefulWidget {
@@ -27,18 +29,43 @@ class _SigUpPageState extends State<SigUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    final profileProvider = Provider.of<ProfileProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Registro'),
-      ),
       body: Stack(
         children: <Widget>[
+          WidgetUtil.createBackground(context, false),
+          _createForm(context),
+        ],
+      ),
+    );
+  }
+
+  Widget _createForm(BuildContext context) {
+    final profileProvider = Provider.of<ProfileProvider>(context);
+    final size = MediaQuery.of(context).size;
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          SafeArea(
+              child: Container(
+                height: 80.0,
+              )),
           Container(
-            padding: EdgeInsets.all(10.0),
-            child: ListView(
+            width: size.width * 0.85,
+            margin: EdgeInsets.symmetric(vertical: 30.0),
+            padding: EdgeInsets.symmetric(vertical: 50.0),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5.0),
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 3.0,
+                      offset: Offset(0.0, 5.0),
+                      spreadRadius: 3.0),
+                ]),
+            child: Column(
               children: <Widget>[
-                LogoWidget(),
+                Text('Registro'),
                 _createEmail(),
                 Divider(),
                 _createPassword(),
@@ -48,10 +75,12 @@ class _SigUpPageState extends State<SigUpPage> {
                 _createNickName(),
                 Divider(),
                 _createButtonSignup(profileProvider),
+                WidgetUtil.createTextButton(context, 'Iniciar Sesion', () {
+                  Navigator.pop(context);
+                })
               ],
             ),
-          ),
-          _showCircularProgress(),
+          )
         ],
       ),
     );
@@ -64,63 +93,75 @@ class _SigUpPageState extends State<SigUpPage> {
   }
 
   Widget _createEmail() {
-    return TextField(
-      keyboardType: TextInputType.emailAddress,
-      decoration: InputDecoration(
-          hintText: 'Email de la persona',
-          labelText: 'Email',
-          suffixIcon: Icon(Icons.alternate_email),
-          icon: Icon(Icons.email)),
-      onChanged: (valor) {
-        setState(() {
-          _email = valor;
-        });
-      },
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: TextField(
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+            hintText: 'Email de la persona',
+            labelText: 'Email',
+            suffixIcon: Icon(Icons.alternate_email),
+            icon: Icon(Icons.email)),
+        onChanged: (valor) {
+          setState(() {
+            _email = valor;
+          });
+        },
+      ),
     );
   }
 
   Widget _createPassword() {
-    return TextField(
-      obscureText: true,
-      decoration: InputDecoration(
-          hintText: 'Contraseña',
-          labelText: 'Contraseña',
-          suffixIcon: Icon(Icons.lock),
-          icon: Icon(Icons.lock)),
-      onChanged: (value) {
-        setState(() {
-          _password = value;
-        });
-      },
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: TextField(
+        obscureText: true,
+        decoration: InputDecoration(
+            hintText: 'Contraseña',
+            labelText: 'Contraseña',
+            suffixIcon: Icon(Icons.lock),
+            icon: Icon(Icons.lock)),
+        onChanged: (value) {
+          setState(() {
+            _password = value;
+          });
+        },
+      ),
     );
   }
 
   Widget _createName() {
-    return TextField(
-      decoration: InputDecoration(
-          hintText: 'Nombre',
-          labelText: 'Nombre',
-          suffixIcon: Icon(Icons.accessibility),
-          icon: Icon(Icons.account_circle)),
-      onChanged: (value) {
-        setState(() {
-          _name = value;
-        });
-      },
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: TextField(
+        decoration: InputDecoration(
+            hintText: 'Nombre',
+            labelText: 'Nombre',
+            suffixIcon: Icon(Icons.accessibility),
+            icon: Icon(Icons.account_circle)),
+        onChanged: (value) {
+          setState(() {
+            _name = value;
+          });
+        },
+      ),
     );
   }
 
   Widget _createNickName() {
-    return TextField(
-      decoration: InputDecoration(
-          hintText: 'Apodo',
-          labelText: 'Apodo',
-          icon: Icon(Icons.account_circle)),
-      onChanged: (value) {
-        setState(() {
-          _name = value;
-        });
-      },
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: TextField(
+        decoration: InputDecoration(
+            hintText: 'Apodo',
+            labelText: 'Apodo',
+            icon: Icon(Icons.account_circle)),
+        onChanged: (value) {
+          setState(() {
+            _name = value;
+          });
+        },
+      ),
     );
   }
 
@@ -129,10 +170,13 @@ class _SigUpPageState extends State<SigUpPage> {
       padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
       child: Center(
         child: RaisedButton(
-          child: Text('Registrar'),
-          color: Colors.blue,
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
+            child: Text('Registrar'),
+          ),
+          color: Colors.red,
           textColor: Colors.white,
-          shape: StadiumBorder(),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
           onPressed: () {
             profileProvider.uploadProfile(Profile(
                 uid: '',
@@ -146,5 +190,7 @@ class _SigUpPageState extends State<SigUpPage> {
       ),
     );
   }
+
+
 
 }

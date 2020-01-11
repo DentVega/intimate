@@ -27,7 +27,7 @@ class EventDetail extends StatelessWidget {
   Widget _createAppBar(Event event) {
     return SliverAppBar(
       elevation: 2.0,
-      backgroundColor: Colors.indigoAccent,
+      backgroundColor: Colors.redAccent,
       expandedHeight: 200.0,
       floating: false,
       pinned: true,
@@ -65,7 +65,7 @@ class EventDetail extends StatelessWidget {
           Text(
             'Te Esperamos',
             style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 20, color: Colors.blue),
+                fontWeight: FontWeight.bold, fontSize: 20, color: Colors.redAccent),
           ),
           SizedBox(height: 30.0),
         ],
@@ -83,7 +83,7 @@ class EventDetail extends StatelessWidget {
           children: <Widget>[
             Icon(
               Icons.date_range,
-              color: Colors.blue,
+              color: Colors.red,
             ),
             SizedBox(
               width: 10.0,

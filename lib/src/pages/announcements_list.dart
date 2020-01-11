@@ -42,7 +42,7 @@ class AnnouncementsList extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       child: Column(children: <Widget>[
         ListTile(
-          leading: Icon(Icons.announcement, color: Colors.blue,),
+          leading: Icon(Icons.announcement, color: Colors.redAccent,),
           title: Text(announcement.name),
           subtitle: Text(announcement.detail),
         )

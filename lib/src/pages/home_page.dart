@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.announcement), title: Text('Anuncios'))
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Colors.redAccent,
         onTap: _onItemTapeed,
       ),
     );
@@ -53,31 +53,31 @@ class _HomePageState extends State<HomePage> {
         DrawerHeader(
           child: Container(),
           decoration: BoxDecoration(
-            color: Colors.blue,
+            color: Colors.redAccent,
               image: DecorationImage(
                   image: AssetImage('assets/menu-img.jpg'),
                   fit: BoxFit.cover)
           ),
         ),
         ListTile(
-          leading: Icon(Icons.people, color: Colors.blue,),
+          leading: Icon(Icons.people, color: Colors.redAccent,),
           title: Text('Perfil'),
           onTap: () {},
         ),
         ListTile(
-          leading: Icon(Icons.pages, color: Colors.blue,),
+          leading: Icon(Icons.pages, color: Colors.redAccent,),
           title: Text('Anuncios'),
           onTap: () {},
         ),
         ListTile(
-          leading: Icon(Icons.map, color: Colors.blue,),
+          leading: Icon(Icons.map, color: Colors.redAccent,),
           title: Text('Ubicaciones'),
           onTap: () {
             Navigator.pushNamed(context, 'maps');
           },
         ),
         ListTile(
-          leading: Icon(Icons.exit_to_app, color: Colors.blue,),
+          leading: Icon(Icons.exit_to_app, color: Colors.redAccent,),
           title: Text('Cerrar Sesion'),
           onTap: () => signOff(),
         )

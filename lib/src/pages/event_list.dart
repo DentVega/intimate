@@ -50,7 +50,7 @@ class EventList extends StatelessWidget {
           SizedBox(width: 10.0),
           Icon(
             Icons.event,
-            color: Colors.blue,
+            color: Colors.redAccent,
             size: 30.0,
           ),
           Expanded(
@@ -74,7 +74,7 @@ class EventList extends StatelessWidget {
                         child: Text(
                           'Ver detalle',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.blue),
+                              fontWeight: FontWeight.bold, color: Colors.redAccent),
                         ),
                         onPressed: () {
                           DialogGenerator.showDialogVisitEvent(context, event);
