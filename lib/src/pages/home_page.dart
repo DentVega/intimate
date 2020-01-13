@@ -1,9 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intimate/src/pages/announcement_page.dart';
 import 'package:intimate/src/pages/events_page.dart';
 import 'package:intimate/src/pages/ranking_page.dart';
+import 'package:intimate/src/providers/AuthService.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
+
+  final FirebaseUser currentUser;
+
+  HomePage(this.currentUser);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -91,5 +99,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void signOff() {}
+  void signOff() async {
+    await Provider.of<AuthService>(context).logout();
+  }
 }

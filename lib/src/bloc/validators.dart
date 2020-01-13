@@ -25,4 +25,24 @@ class Validators {
   }
   );
 
+  final validateName = StreamTransformer<String, String>.fromHandlers(
+    handleData: (name, sink) {
+      if (name.length >= 1) {
+        sink.add(name);
+      } else {
+        sink.addError('Rellene el campo');
+      }
+    }
+  );
+
+  final validateNikName = StreamTransformer<String, String>.fromHandlers(
+      handleData: (nickName, sink) {
+        if (nickName.length >= 1) {
+          sink.add(nickName);
+        } else {
+          sink.addError('Rellene el campo');
+        }
+      }
+  );
+
 }

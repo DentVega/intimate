@@ -132,10 +132,10 @@ class WidgetUtil {
     ]);
   }
 
-  static Widget createBackground(BuildContext context, bool containIcon) {
+  static Widget createBackground(BuildContext context, bool containIcon, bool bullScreen) {
     final size = MediaQuery.of(context).size;
     final fondoMorado = Container(
-      height: size.height * 0.4,
+      height: bullScreen? double.infinity : size.height * 0.4,
       width: double.infinity,
       decoration: BoxDecoration(
           gradient: LinearGradient(colors: <Color>[

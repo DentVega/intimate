@@ -56,6 +56,10 @@ class EventDetail extends StatelessWidget {
           SizedBox(
             height: 20.0,
           ),
+          _createDishes(event, context),
+          SizedBox(
+            height: 20.0,
+          ),
           Text(event.detail),
           SizedBox(
             height: 20.0,
@@ -104,6 +108,30 @@ class EventDetail extends StatelessWidget {
       var longitude = event.location.longitude;
       return WidgetUtil.location(context, LatLng(latitude, longitude), 300);
     }
+  }
+
+  Widget _createDishes(Event event, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, 'dishes', arguments: event);
+      },
+      child: Card(
+        elevation: 5.0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        child: Container(
+          padding: EdgeInsets.all(15.0),
+          child: Row(
+            children: <Widget>[
+              Icon(Icons.fastfood, color: Colors.redAccent,),
+              SizedBox(
+                width: 10.0,
+              ),
+              Text('Platos')
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
 }

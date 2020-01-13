@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intimate/src/model/profile_model.dart';
-import 'package:intimate/src/providers/profile.provider.dart';
-import 'package:intimate/src/utils/utils.dart';
-import 'package:intimate/src/widgets/logo_widget.dart';
 import 'package:intimate/src/widgets/widget_util.dart';
-import 'package:provider/provider.dart';
 
 class SigUpPage extends StatefulWidget {
   @override
@@ -32,7 +28,7 @@ class _SigUpPageState extends State<SigUpPage> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          WidgetUtil.createBackground(context, false),
+          WidgetUtil.createBackground(context, false, false),
           _createForm(context),
         ],
       ),
@@ -40,7 +36,6 @@ class _SigUpPageState extends State<SigUpPage> {
   }
 
   Widget _createForm(BuildContext context) {
-    final profileProvider = Provider.of<ProfileProvider>(context);
     final size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Column(
@@ -74,7 +69,7 @@ class _SigUpPageState extends State<SigUpPage> {
                 Divider(),
                 _createNickName(),
                 Divider(),
-                _createButtonSignup(profileProvider),
+                _createButtonSignup(),
                 WidgetUtil.createTextButton(context, 'Iniciar Sesion', () {
                   Navigator.pop(context);
                 })
@@ -165,7 +160,7 @@ class _SigUpPageState extends State<SigUpPage> {
     );
   }
 
-  Widget _createButtonSignup(ProfileProvider profileProvider) {
+  Widget _createButtonSignup() {
     return Container(
       padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
       child: Center(
@@ -178,13 +173,7 @@ class _SigUpPageState extends State<SigUpPage> {
           textColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
           onPressed: () {
-            profileProvider.uploadProfile(Profile(
-                uid: '',
-                email: 'dentvega6@gmail.com',
-                name: 'Brian 3',
-                nickName: 'Brian V3',
-                score: 0
-            ));
+
           },
         ),
       ),
