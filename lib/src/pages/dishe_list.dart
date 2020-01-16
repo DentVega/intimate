@@ -40,12 +40,28 @@ class DisheList extends StatelessWidget {
     return Card(
       elevation: 5.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-      child: Column(
-        children: <Widget>[
-          ListTile(
-            title: Text(dishe.name),
-          )
-        ],
+      child: Container(
+        padding: EdgeInsets.all(5.0),
+        child: Column(
+          children: <Widget>[
+            ListTile(
+              title: Text(dishe.name),
+              subtitle: Text('${dishe.price.toString()} Bs.'),
+              leading: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50.0)
+                ),
+                child: FadeInImage(fadeInCurve: Curves.easeIn,
+                  image: NetworkImage(dishe.image),
+                  placeholder: AssetImage('assets/img/loading.gif'),
+                  fadeInDuration: Duration(milliseconds: 200),
+                  height: 300.0,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
