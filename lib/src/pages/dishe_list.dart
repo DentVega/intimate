@@ -16,8 +16,38 @@ class DisheList extends StatelessWidget {
   }
 
   Widget _createList(List<Dishe> dishes, BuildContext context) {
+    if (dishes != null) {
+      return ListView(
+        children: dishes.map((dishe) {
+          return Column(
+            children: <Widget>[
+              _cardDishe(dishe)
+            ],
+          );
+        }).toList(),
+      );
+    } else {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
     return Container(
       child: Text('dsd'),
     );
   }
+
+  Widget _cardDishe(Dishe dishe) {
+    return Card(
+      elevation: 5.0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+      child: Column(
+        children: <Widget>[
+          ListTile(
+            title: Text(dishe.name),
+          )
+        ],
+      ),
+    );
+  }
+
 }

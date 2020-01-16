@@ -16,11 +16,16 @@ class _DishesPageState extends State<DishesPage> {
   @override
   Widget build(BuildContext context) {
     Event event = ModalRoute.of(context).settings.arguments;
-    return Container(
-      padding: EdgeInsets.all(10.0),
-      child: StreamProvider<List<Dishe>>.value(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(event.name),
+      ),
+      body: Container(
+        padding: EdgeInsets.all(10.0),
+        child: StreamProvider<List<Dishe>>.value(
           value: db.streamDishes(event.uid),
           child: DisheList(),
+        ),
       ),
     );
   }

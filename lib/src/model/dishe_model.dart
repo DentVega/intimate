@@ -5,9 +5,10 @@ class Dishe {
   String uid;
   String uidEvent;
   String name;
+  String image;
   int price;
 
-  Dishe({this.uid, this.uidEvent, this.name, this.price});
+  Dishe({this.uid, this.uidEvent, this.name, this.image, this.price});
 
   factory Dishe.fromFirestore(DocumentSnapshot doc) {
     Map data = doc.data;
@@ -15,6 +16,7 @@ class Dishe {
       uid: data['uid'],
       uidEvent: data['uidEvent'],
       name: data['name'],
+      image: data['image'],
       price: data['price']
     );
   }
@@ -25,6 +27,7 @@ class Dishe {
         uid: data['uid'],
         uidEvent: data['uidEvent'],
         name: data['name'],
+        image: data['image'],
         price: data['price']
     );
   }
