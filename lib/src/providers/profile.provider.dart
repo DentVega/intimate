@@ -21,6 +21,6 @@ class ProfileProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void uploadProfile(Profile profile) =>
-      _cloudFirestoreRepository.uploadUserDataFirestore(profile);
+//  void uploadProfile(Profile profile) =>
+//      _cloudFirestoreRepository.uploadUserDataFirestore(profile);
 }

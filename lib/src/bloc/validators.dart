@@ -45,4 +45,14 @@ class Validators {
       }
   );
 
+  final validateDateBirth = StreamTransformer<DateTime, DateTime>.fromHandlers(
+    handleData: (dateBirth, sink) {
+      if (dateBirth != null) {
+        sink.add(dateBirth);
+      } else {
+        sink.addError('Rellene el campo');
+      }
+    }
+  );
+
 }

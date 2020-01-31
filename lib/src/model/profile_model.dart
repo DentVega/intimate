@@ -1,11 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Profile {
   String uid;
   String email;
   String name;
   String nickName;
   int score;
+  Timestamp dateBirth;
 
-  Profile({this.uid, this.email, this.name, this.nickName, this.score});
+  Profile({this.uid, this.email, this.name, this.nickName, this.score, this.dateBirth});
 
   factory Profile.fromMap(Map data) {
     data = data ?? {};
@@ -14,7 +17,9 @@ class Profile {
         email: data["email"],
         name: data["name"],
         nickName: data["nickName"],
-        score: data["score"]);
+        score: data["score"],
+        dateBirth: data["dateBirth"]
+    );
   }
 
   factory Profile.fromJson(Map<String, dynamic> json) => new Profile(
@@ -22,13 +27,16 @@ class Profile {
       email: json["email"],
       name: json["name"],
       nickName: json["nickName"],
-      score: json["score"]);
+      score: json["score"],
+      dateBirth: json["dateBirth"]
+  );
 
   Map<String, dynamic> toJson() => {
         "uid": uid,
         "email": email,
         "name": name,
         "nickName": nickName,
-        "score": score
+        "score": score,
+        "dateBirth": dateBirth
       };
 }

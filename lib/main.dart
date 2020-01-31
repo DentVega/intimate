@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intimate/src/bloc/provider.dart';
 import 'package:intimate/src/pages/dishes_page.dart';
 import 'package:intimate/src/pages/event_detail.dart';
@@ -19,6 +20,14 @@ class MyApp extends StatelessWidget {
     return Provider(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: [
+          const Locale('en', 'US'),
+          const Locale('es', 'ES'),
+        ],
         title: 'Intimos',
         initialRoute: 'login',
         routes: {

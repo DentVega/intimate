@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intimate/src/bloc/login_bloc.dart';
 export 'package:intimate/src/bloc/login_bloc.dart';
+import 'package:intimate/src/bloc/signup_bloc.dart';
+export 'package:intimate/src/bloc/signup_bloc.dart';
 
 class Provider extends InheritedWidget {
+
+  final logicBloc = LoginBloc();
+  final signupBloc = SignupBloc();
+
 
   static Provider _instancia;
 
@@ -12,8 +18,6 @@ class Provider extends InheritedWidget {
     }
     return  _instancia;
   }
-
-  final logicBloc = LoginBloc();
 
   Provider._internal({Key key, Widget child}) : super(key: key, child: child);
 
@@ -25,6 +29,10 @@ class Provider extends InheritedWidget {
 
   static LoginBloc of (BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<Provider>().logicBloc;
+  }
+
+  static SignupBloc signBloc (BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<Provider>().signupBloc;
   }
 
 }

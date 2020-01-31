@@ -12,15 +12,15 @@ class CloudFirestoreAPI {
 
   final Firestore _db = Firestore.instance;
 
-  void uploadProfile(Profile profile) async {
-    DocumentReference ref = _db.collection(PROFILES).document();
-    profile.uid = ref.documentID;
+  Future<void> uploadProfile(Profile profile) {
+    DocumentReference ref = _db.collection(PROFILES).document(profile.uid);
     return ref.setData({
       'uid': profile.uid,
       'email': profile.email,
       'name': profile.name,
       'nickName': profile.nickName,
-      'score': profile.score
+      'score': profile.score,
+      'dateBirth': profile.dateBirth
     }, merge: true);
   }
 
