@@ -53,6 +53,33 @@ class DialogGenerator {
     );
   }
 
+  static void showAlertMessageCustom(BuildContext context, String message) {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)),
+            content: Container(
+              width: 55,
+              height: 55,
+              child: Center(
+                child: Text(message, style: TextStyle(
+                    fontWeight: FontWeight.bold
+                ),),
+              ),
+            ),
+            actions: <Widget>[
+              FlatButton(child: Text('OK'), onPressed: () {
+                Navigator.of(context).pop();
+              })
+            ],
+          );
+        }
+    );
+  }
+
   static void completeRegister(BuildContext context) {
     showDialog(
         context: context,
@@ -65,7 +92,9 @@ class DialogGenerator {
               width: 55,
               height: 55,
               child: Center(
-                child: Text('Registro Completado'),
+                child: Text('Registro Completado', style: TextStyle(
+                  fontWeight: FontWeight.bold
+                ),),
               ),
             ),
             actions: <Widget>[
