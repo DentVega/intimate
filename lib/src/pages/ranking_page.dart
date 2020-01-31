@@ -1,4 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intimate/src/model/profile_model.dart';
+import 'package:intimate/src/pages/ranking_list_page.dart';
+import 'package:intimate/src/providers/authentication.dart';
+import 'package:intimate/src/providers/cloud_firestore_api.dart';
+import 'package:intimate/src/widgets/profile_ranking.dart';
+import 'package:provider/provider.dart';
 
 class RankingPage extends StatefulWidget {
   @override
@@ -6,28 +13,46 @@ class RankingPage extends StatefulWidget {
 }
 
 class _RankingPageState extends State<RankingPage> {
+  final db = CloudFirestoreAPI();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          SizedBox(height: 20.0,),
-          CircleAvatar(
-            backgroundImage: NetworkImage(
-                'https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg'),
-            radius: 110.0,
-          ),
-          SizedBox(height: 15.0,),
-          Text('Brian Vega'),
-          SizedBox(height: 5.0,),
-          Text('1000 puntos', style: TextStyle(fontWeight: FontWeight.bold),),
-          _listProfiles()
-        ],
-      ),
+    Auth auth = Auth();
+    final _screenSize = MediaQuery.of(context).size;
+    return Stack(
+      children: <Widget>[
+        Container(
+          child: FutureBuilder(
+              future: auth.getCurrentUser(),
+              builder: (BuildContext context, AsyncSnapshot<FirebaseUser> snapshot) {
+                if (snapshot.hasData) {
+                  print(snapshot.data.uid);
+                  return StreamProvider<Profile>.value(
+                    value: db.streamProfile(snapshot.data.uid),
+                    child: ProfileRanking(),
+                  );
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              }),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 70.0),
+          child: _listProfiles(),
+        )
+      ],
     );
   }
 
   Widget _listProfiles() {
-    return Container();
+    return Container(
+      padding: EdgeInsets.all(10.0),
+      child: StreamProvider<List<Profile>>.value(
+        value: db.streamProfiles(),
+        child: RankingListPage(),
+      ),
+    );
   }
 }

@@ -4,6 +4,7 @@ import 'package:intimate/src/pages/announcement_page.dart';
 import 'package:intimate/src/pages/events_page.dart';
 import 'package:intimate/src/pages/ranking_page.dart';
 import 'package:intimate/src/providers/AuthService.dart';
+import 'package:intimate/src/providers/authentication.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -70,12 +71,23 @@ class _HomePageState extends State<HomePage> {
         ListTile(
           leading: Icon(Icons.people, color: Colors.redAccent,),
           title: Text('Perfil'),
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, 'profile');
+          },
         ),
         ListTile(
           leading: Icon(Icons.pages, color: Colors.redAccent,),
-          title: Text('Anuncios'),
-          onTap: () {},
+          title: Text('Canciones'),
+          onTap: () {
+            Navigator.pushNamed(context, 'songs');
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.pages, color: Colors.redAccent,),
+          title: Text('Oraciones'),
+          onTap: () {
+            Navigator.pushNamed(context, 'devotions');
+          },
         ),
         ListTile(
           leading: Icon(Icons.map, color: Colors.redAccent,),
@@ -87,7 +99,9 @@ class _HomePageState extends State<HomePage> {
         ListTile(
           leading: Icon(Icons.exit_to_app, color: Colors.redAccent,),
           title: Text('Cerrar Sesion'),
-          onTap: () => signOff(),
+          onTap: () {
+            signOff(context);
+          },
         )
       ],
     );
@@ -99,7 +113,9 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void signOff() async {
-    await Provider.of<AuthService>(context).logout();
+  void signOff(BuildContext context) async {
+    Auth auth = new Auth();
+    auth.signOut();
+    Navigator.pushReplacementNamed(context, "login");
   }
 }

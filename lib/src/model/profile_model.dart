@@ -31,6 +31,18 @@ class Profile {
       dateBirth: json["dateBirth"]
   );
 
+  factory Profile.fromFirestore(DocumentSnapshot doc) {
+    Map data = doc.data;
+    return Profile(
+      uid: data['uid'],
+      email: data['email'],
+      name: data['name'],
+      nickName: data['nickName'],
+      score: data['score'],
+      dateBirth: data['dateBirth'],
+    );
+  }
+
   Map<String, dynamic> toJson() => {
         "uid": uid,
         "email": email,
