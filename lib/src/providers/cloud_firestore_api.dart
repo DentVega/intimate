@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intimate/src/model/announcement_model.dart';
+import 'package:intimate/src/model/churches_model.dart';
 import 'package:intimate/src/model/devotion_model.dart';
 import 'package:intimate/src/model/dishe_model.dart';
 import 'package:intimate/src/model/event_model.dart';
@@ -13,6 +14,7 @@ class CloudFirestoreAPI {
   final String DISHES = 'dishes';
   final String SONGS = 'songs';
   final String DEVOTIONS = 'devotions';
+  final String CHURLES = 'churles';
 
   final Firestore _db = Firestore.instance;
 
@@ -46,6 +48,12 @@ class CloudFirestoreAPI {
     var ref = _db.collection(SONGS);
     return ref.snapshots().map((list) =>
         list.documents.map((doc) => Song.fromFirestore(doc)).toList());
+  }
+
+  Stream<List<Church>> streamChurles() {
+    var ref = _db.collection(CHURLES);
+    return ref.snapshots().map((list) =>
+        list.documents.map((doc) => Church.fromFirestore(doc)).toList());
   }
 
   Stream<List<Devotion>> streamDevotion() {

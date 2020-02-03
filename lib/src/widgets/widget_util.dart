@@ -173,19 +173,20 @@ class WidgetUtil {
           padding: EdgeInsets.only(top: 50.0),
           child: Column(
             children: <Widget>[
-              containIcon
-                  ? Icon(
-                      Icons.person_pin_circle,
-                      color: Colors.white,
-                      size: 100.0,
-                    )
-                  : Container(),
+              SizedBox(
+                height: 30.0,
+                width: double.infinity,
+              ),
+              Text(
+                'INTIMOS',
+                style: TextStyle(color: Colors.white, fontSize: 25.0),
+              ),
               SizedBox(
                 height: 10.0,
                 width: double.infinity,
               ),
               Text(
-                'Intimate',
+                'La Banda',
                 style: TextStyle(color: Colors.white, fontSize: 25.0),
               )
             ],

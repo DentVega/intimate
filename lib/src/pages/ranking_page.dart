@@ -22,6 +22,7 @@ class _RankingPageState extends State<RankingPage> {
     return Stack(
       children: <Widget>[
         Container(
+          height: _screenSize.height * 0.9,
           child: FutureBuilder(
               future: auth.getCurrentUser(),
               builder: (BuildContext context, AsyncSnapshot<FirebaseUser> snapshot) {
@@ -39,7 +40,7 @@ class _RankingPageState extends State<RankingPage> {
               }),
         ),
         Container(
-          margin: EdgeInsets.only(top: 70.0),
+          margin: EdgeInsets.only(top:140.0),
           child: _listProfiles(),
         )
       ],

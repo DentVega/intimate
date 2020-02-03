@@ -15,13 +15,16 @@ class _DevotionsPageState extends State<DevotionsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Oraciones'),
-      ),
-      body: StreamProvider<List<Devotion>>.value(
-        value: db.streamDevotion(),
-        child: DevotionList(),
-      ),
-    );
+        appBar: AppBar(
+          title: Text('Oraciones'),
+        ),
+        body: StreamProvider<List<Devotion>>.value(
+          value: db.streamDevotion(),
+          child: DevotionList(),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(Icons.add),
+        ));
   }
 }

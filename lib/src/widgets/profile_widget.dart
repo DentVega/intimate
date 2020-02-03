@@ -39,6 +39,13 @@ class ProfileWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
+                    Text(
+                      '${profile.score} puntos',
+                      style: TextStyle(fontSize: 20.0),
+                    ),
+                    SizedBox(
+                      height: 5.0,
+                    ),
                     Text('Nombre: ${profile.name}', style: TextStyle(fontSize: 30),),
                     SizedBox(
                       height: 5.0,
@@ -46,10 +53,6 @@ class ProfileWidget extends StatelessWidget {
                     Text('Nombre de usuario: ${profile.nickName}', style: TextStyle(fontSize: 20),),
                     SizedBox(
                       height: 5.0,
-                    ),
-                    Text(
-                      '${profile.score} puntos',
-                      style: TextStyle(fontSize: 20.0),
                     ),
                   ],
                 ),

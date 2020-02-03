@@ -266,7 +266,7 @@ class _SigUpPageState extends State<SigUpPage> {
               score: 0,
               dateBirth: Timestamp.fromDate(dateTime));
           cloudFirestoreApi.uploadProfile(profile).then((onValue) {
-            completeRegister(context);
+            completeRegister(context, email, password);
           });
         } else {
           closeLoadingDialog(context);
@@ -277,10 +277,14 @@ class _SigUpPageState extends State<SigUpPage> {
     });
   }
 
-  completeRegister(BuildContext context) {
+  completeRegister(BuildContext context, email, password) {
     Future timeOut = Future.delayed(Duration(seconds: 3), () {
       Navigator.of(context).pop();
-      DialogGenerator.completeRegister(context);
+//      DialogGenerator.completeRegister(context);
+      var auth = Auth();
+      auth.signIn(email, password).then((value) {
+        Navigator.pushReplacementNamed(context, 'home');
+      });
     });
   }
 
