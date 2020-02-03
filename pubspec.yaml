@@ -36,6 +36,7 @@ dependencies:
   url_launcher: ^5.4.1
   image_picker: ^0.6.2+3
   rxdart: ^0.23.1
+  user_location:
 
   flutter_localizations:
     sdk: flutter
