@@ -130,7 +130,10 @@ class DialogGenerator {
                     children: <Widget>[
                       Text(
                         song.name,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                            letterSpacing: 1.0
+                        ),
                       ),
                       SizedBox(
                         height: 10.0,

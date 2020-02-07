@@ -76,10 +76,27 @@ class _MapLocationState extends State<MapLocation> {
       ]),
       layers: [
         _crearMapa(),
+        _crearMarcadores(),
         MarkerLayerOptions(markers: markers),
         userLocationOptions
       ],
     );
+  }
+
+  _crearMarcadores() {
+    return MarkerLayerOptions(markers: <Marker>[
+      Marker(
+          width: 100.0,
+          height: 100.0,
+          point: positionCapi,
+          builder: (context) => Container(
+            child: Icon(
+              Icons.location_on,
+              size: 45.0,
+              color: Theme.of(context).primaryColor,
+            ),
+          ))
+    ]);
   }
 
   _crearMapa() {
@@ -145,7 +162,7 @@ class _MapLocationState extends State<MapLocation> {
       onTap: () {
         LatLng position =
             LatLng(church.location.latitude, church.location.longitude);
-        map.move(position, 15.0);
+        map.move(positionCapi, 15.0);
       },
       child: Container(
         height: 50,

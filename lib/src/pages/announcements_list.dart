@@ -23,7 +23,7 @@ class AnnouncementsList extends StatelessWidget {
             children: <Widget>[
               _cardAnnouncement(announcement),
               SizedBox(
-                height: 20.0,
+                height: 10.0,
               ),
             ],
           );
