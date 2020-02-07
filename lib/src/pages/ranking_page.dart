@@ -19,10 +19,10 @@ class _RankingPageState extends State<RankingPage> {
   Widget build(BuildContext context) {
     Auth auth = Auth();
     final _screenSize = MediaQuery.of(context).size;
-    return Stack(
+    return Column(
       children: <Widget>[
         Container(
-          height: _screenSize.height * 0.9,
+          height: _screenSize.height * 0.16,
           child: FutureBuilder(
               future: auth.getCurrentUser(),
               builder: (BuildContext context, AsyncSnapshot<FirebaseUser> snapshot) {
@@ -40,7 +40,7 @@ class _RankingPageState extends State<RankingPage> {
               }),
         ),
         Container(
-          margin: EdgeInsets.only(top:140.0),
+          height: _screenSize.height * 0.64,
           child: _listProfiles(),
         )
       ],

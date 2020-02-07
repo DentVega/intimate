@@ -7,6 +7,7 @@ import 'package:intimate/src/providers/authentication.dart';
 import 'package:intimate/src/providers/cloud_firestore_api.dart';
 import 'package:intimate/src/widgets/dialog_generator.dart';
 import 'package:intimate/src/widgets/widget_util.dart';
+import 'package:intl/intl.dart';
 
 class SigUpPage extends StatefulWidget {
   @override
@@ -209,7 +210,7 @@ class _SigUpPageState extends State<SigUpPage> {
     if (picker != null) {
       setState(() {
         updateDate(picker);
-        _inputFieldDateController.text = signupBloc.dateBirth.toString();
+        _inputFieldDateController.text = DateFormat('yyyy-MM-dd').format(signupBloc.dateBirth);
       });
     }
   }
@@ -246,11 +247,6 @@ class _SigUpPageState extends State<SigUpPage> {
     String name = signupBloc.name;
     String nickName = signupBloc.nickName;
     DateTime dateTime = signupBloc.dateBirth;
-    print('email: ${email}');
-    print('password: ${password}');
-    print('name: ${name}');
-    print('nickName: ${nickName}');
-    print('dateTime: ${dateTime}');
     DialogGenerator.showAlertLoading(context);
     var auth = Auth();
     auth.signUp(email, password).then((onValue) {
@@ -280,7 +276,6 @@ class _SigUpPageState extends State<SigUpPage> {
   completeRegister(BuildContext context, email, password) {
     Future timeOut = Future.delayed(Duration(seconds: 3), () {
       Navigator.of(context).pop();
-//      DialogGenerator.completeRegister(context);
       var auth = Auth();
       auth.signIn(email, password).then((value) {
         Navigator.pushReplacementNamed(context, 'home');
@@ -301,7 +296,6 @@ class _SigUpPageState extends State<SigUpPage> {
     signupBloc.changePassword('');
     signupBloc.changeName('');
     signupBloc.changeNickName('');
-
   }
 
 }

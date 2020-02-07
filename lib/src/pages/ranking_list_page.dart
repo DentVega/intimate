@@ -6,7 +6,6 @@ class RankingListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var profiles = Provider.of<List<Profile>>(context);
-    final _screenSize = MediaQuery.of(context).size;
     return _crearList(profiles, context);
   }
 

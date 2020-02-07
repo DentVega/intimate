@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                 ]),
             child: Column(
               children: <Widget>[
-                Text('Inicio de sesion'),
+                Text('Inicio de Sesión'),
                 SizedBox(
                   height: 30.0,
                 ),

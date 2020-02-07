@@ -25,14 +25,13 @@ class _ProfileRankingState extends State<ProfileRanking> {
     return Center(
       child: Container(
         padding: EdgeInsets.all(5.0),
-        width: double.infinity,
         child: Card(
           elevation: 5.0,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0)),
           child: Container(
             padding: EdgeInsets.all(15.0),
-            child: Column(
+            child: Row(
               children: <Widget>[
                 CircleAvatar(
                   backgroundImage: NetworkImage(
@@ -40,7 +39,7 @@ class _ProfileRankingState extends State<ProfileRanking> {
                   radius: 30.0,
                 ),
                 SizedBox(
-                  height: 15.0,
+                  width: 15.0,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

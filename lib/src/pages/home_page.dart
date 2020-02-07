@@ -5,10 +5,10 @@ import 'package:intimate/src/pages/events_page.dart';
 import 'package:intimate/src/pages/ranking_page.dart';
 import 'package:intimate/src/providers/AuthService.dart';
 import 'package:intimate/src/providers/authentication.dart';
+import 'package:intimate/src/widgets/widget_util.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
-
   final FirebaseUser currentUser;
 
   HomePage(this.currentUser);
@@ -60,44 +60,78 @@ class _HomePageState extends State<HomePage> {
       padding: EdgeInsets.zero,
       children: <Widget>[
         DrawerHeader(
-          child: Container(),
-          decoration: BoxDecoration(
-            color: Colors.redAccent,
-              image: DecorationImage(
-                  image: AssetImage('assets/menu-img.jpg'),
-                  fit: BoxFit.cover)
-          ),
-        ),
+            child: Container(
+              child: Center(
+                  child: Column(
+                children: <Widget>[
+                  Text(
+                    'ÍNTIMOS',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 25.0),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                    width: double.infinity,
+                  ),
+                  Text(
+                    'La Banda',
+                    style: TextStyle(color: Colors.white, fontSize: 20.0),
+                  )
+                ],
+              )),
+            ),
+            decoration: BoxDecoration(
+                color: Colors.redAccent,
+                image: DecorationImage(
+                    image: AssetImage('assets/menu-img.jpg'),
+                    fit: BoxFit.cover))),
         ListTile(
-          leading: Icon(Icons.people, color: Colors.redAccent,),
+          leading: Icon(
+            Icons.people,
+            color: Colors.redAccent,
+          ),
           title: Text('Perfil'),
           onTap: () {
             Navigator.pushNamed(context, 'profile');
           },
         ),
         ListTile(
-          leading: Icon(Icons.pages, color: Colors.redAccent,),
+          leading: Icon(
+            Icons.music_note,
+            color: Colors.redAccent,
+          ),
           title: Text('Canciones'),
           onTap: () {
             Navigator.pushNamed(context, 'songs');
           },
         ),
         ListTile(
-          leading: Icon(Icons.pages, color: Colors.redAccent,),
+          leading: Icon(
+            Icons.pages,
+            color: Colors.redAccent,
+          ),
           title: Text('Oraciones'),
           onTap: () {
             Navigator.pushNamed(context, 'devotions');
           },
         ),
         ListTile(
-          leading: Icon(Icons.map, color: Colors.redAccent,),
+          leading: Icon(
+            Icons.map,
+            color: Colors.redAccent,
+          ),
           title: Text('Ubicaciones'),
           onTap: () {
             Navigator.pushNamed(context, 'maps');
           },
         ),
         ListTile(
-          leading: Icon(Icons.exit_to_app, color: Colors.redAccent,),
+          leading: Icon(
+            Icons.exit_to_app,
+            color: Colors.redAccent,
+          ),
           title: Text('Cerrar Sesion'),
           onTap: () {
             signOff(context);

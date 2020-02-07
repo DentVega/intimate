@@ -37,6 +37,7 @@ dependencies:
   image_picker: ^0.6.2+3
   rxdart: ^0.23.1
   user_location:
+  intl: ^0.16.0
 
   flutter_localizations:
     sdk: flutter

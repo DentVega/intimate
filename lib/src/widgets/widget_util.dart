@@ -132,6 +132,53 @@ class WidgetUtil {
     ]);
   }
 
+  static Widget circle() {
+    return Container(
+      width: 100.0,
+      height: 100.0,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100.0),
+          color: Color.fromRGBO(255, 255, 255, 0.05)),
+    );
+  }
+
+  static Widget gradientBackground() {
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(colors: <Color>[
+            Color.fromRGBO(255, 60, 60, 1.0),
+            Color.fromRGBO(90, 70, 178, 1.0)
+          ])),
+    );
+  }
+
+  static Widget background(BuildContext context, bool containIcon, bool bullScreen) {
+    return Container(
+      child: Stack(
+        children: <Widget>[
+          gradientBackground(),
+          Positioned(
+            top: 90.0,
+            left: 30.0,
+            child: circle(),
+          ),
+          Positioned(
+            top: -40.0,
+            right: -30.0,
+            child: circle(),
+          ),
+          Positioned(
+            bottom: -50.0,
+            right: -10.0,
+            child: circle(),
+          ),
+        ],
+      ),
+    );
+  }
+
   static Widget createBackground(BuildContext context, bool containIcon, bool bullScreen) {
     final size = MediaQuery.of(context).size;
     final fondoMorado = Container(
@@ -178,7 +225,7 @@ class WidgetUtil {
                 width: double.infinity,
               ),
               Text(
-                'INTIMOS',
+                'ÍNTIMOS',
                 style: TextStyle(color: Colors.white, fontSize: 25.0),
               ),
               SizedBox(
